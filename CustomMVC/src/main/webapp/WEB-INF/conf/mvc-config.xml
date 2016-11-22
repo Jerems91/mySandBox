@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config-mvc>
+	<route name="Traitement">
+		<nom>monTraitement</nom>
+		<classe>com.groupama.custommvc.routes.MonTraitement</classe>
+		<vue>/WEB-INF/jsp/MonAffichage.jsp</vue>
+	</route>
+	<route name="Traitement2">
+		<nom>monTraitement2</nom>
+		<classe>com.groupama.custommvc.routes.MonTraitement2</classe>
+		<vue>/WEB-INF/jsp/MonAffichage2.jsp</vue>
+	</route>
+	<route name="Traitement3">
+		<nom>monTraitement3</nom>
+		<classe>com.groupama.custommvc.routes.MonTraitement3</classe>
+		<vue>/WEB-INF/jsp/MonAffichage3.jsp</vue>
+	</route>
+</config-mvc>
