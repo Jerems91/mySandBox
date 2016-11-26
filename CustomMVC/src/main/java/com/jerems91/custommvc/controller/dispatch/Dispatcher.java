@@ -31,7 +31,7 @@ public class Dispatcher extends HttpServlet {
 		super.init();
 		
 		// Chargement de la config MVC		
-		chargeConfigMVCXml();
+		chargeConfigMVC();
 		
 		// Affichage des routes configurées à partir de la Map
 		System.out.println(configRoutes);
@@ -90,9 +90,9 @@ public class Dispatcher extends HttpServlet {
 		doGet(request, response);
 	}
 	
-	private void chargeConfigMVCXml() throws ServletException {
+	private void chargeConfigMVC() throws ServletException {
 		
-		String fichierConfig = getServletContext().getInitParameter("mvc-config-xml");
+		String fichierConfig = getServletContext().getInitParameter("mvc-config");
 		
 		System.out.println("Chargement du fichier de configuration : " + fichierConfig);
 		
