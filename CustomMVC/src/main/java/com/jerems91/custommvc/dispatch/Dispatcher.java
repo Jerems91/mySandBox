@@ -1,4 +1,4 @@
-package com.groupama.custommvc.dispatch;
+package com.jerems91.custommvc.dispatch;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -15,7 +15,7 @@ import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 
-import com.groupama.custommvc.beans.Route;
+import com.jerems91.custommvc.beans.Route;
 
 /**
  * Servlet implementation class Dispatcher

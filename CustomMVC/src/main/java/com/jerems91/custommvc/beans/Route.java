@@ -1,4 +1,4 @@
-package com.groupama.custommvc.beans;
+package com.jerems91.custommvc.beans;
 
 /**
  * Représente un route configurée dans la config MVC

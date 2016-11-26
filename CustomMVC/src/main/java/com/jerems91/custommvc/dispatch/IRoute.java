@@ -1,4 +1,4 @@
-package com.groupama.custommvc.dispatch;
+package com.jerems91.custommvc.dispatch;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
