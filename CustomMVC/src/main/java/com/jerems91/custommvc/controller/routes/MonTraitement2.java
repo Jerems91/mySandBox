@@ -1,4 +1,4 @@
-package com.jerems91.custommvc.routes;
+package com.jerems91.custommvc.controller.routes;
 
 import java.io.IOException;
 
@@ -6,7 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.jerems91.custommvc.dispatch.IRoute;
+import com.jerems91.custommvc.controller.dispatch.IRoute;
 
 public class MonTraitement2 implements IRoute {
 
