@@ -2,17 +2,17 @@
 <config-mvc>
 	<route name="Traitement">
 		<nom>monTraitement</nom>
-		<classe>com.jerems91.jeremsmvc.controller.routes.MonTraitement</classe>
+		<classe>com.jerems91.jeremsmvc.controleur.routes.MonTraitement</classe>
 		<vue>/WEB-INF/jsp/MonAffichage.jsp</vue>
 	</route>
 	<route name="Traitement2">
 		<nom>monTraitement2</nom>
-		<classe>com.jerems91.jeremsmvc.controller.routes.MonTraitement2</classe>
+		<classe>com.jerems91.jeremsmvc.controleur.routes.MonTraitement2</classe>
 		<vue>/WEB-INF/jsp/MonAffichage2.jsp</vue>
 	</route>
 	<route name="Traitement3">
 		<nom>monTraitement3</nom>
-		<classe>com.jerems91.jeremsmvc.controller.routes.MonTraitement3</classe>
+		<classe>com.jerems91.jeremsmvc.controleur.routes.MonTraitement3</classe>
 		<vue>/WEB-INF/jsp/MonAffichage3.jsp</vue>
 	</route>
 </config-mvc>

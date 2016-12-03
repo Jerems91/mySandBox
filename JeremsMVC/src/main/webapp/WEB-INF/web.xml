@@ -12,7 +12,7 @@
 	</context-param>
 	<servlet>
 		<servlet-name>Dispatcher</servlet-name>
-		<servlet-class>com.jerems91.jeremsmvc.controller.dispatch.Dispatcher</servlet-class>
+		<servlet-class>com.jerems91.jeremsmvc.controleur.dispatch.Dispatcher</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<!-- Déclaration des mappings des Servlets -->

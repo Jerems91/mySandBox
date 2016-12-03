@@ -1,4 +1,4 @@
-package com.jerems91.jeremsmvc.controller.beans;
+package com.jerems91.jeremsmvc.controleur.beans;
 
 /**
  * Représente un route configurée dans la config MVC

@@ -1,4 +1,4 @@
-package com.jerems91.jeremsmvc.controller.dispatch;
+package com.jerems91.jeremsmvc.controleur.routes;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
