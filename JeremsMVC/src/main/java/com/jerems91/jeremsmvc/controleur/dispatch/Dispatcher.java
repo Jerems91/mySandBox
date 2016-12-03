@@ -29,6 +29,9 @@ public class Dispatcher extends HttpServlet {
 	
 	private static final Logger logger = LogManager.getLogger(Dispatcher.class);
 	
+	private static final String PAGE_ACCUEIL = "/index.html";
+	private static final String PAGE_PROBLEME = "/WEB-INF/jsp/probleme.jsp";
+	
 	private Map<String,Route> configRoutes;
 	
 	@Override
@@ -39,19 +42,22 @@ public class Dispatcher extends HttpServlet {
 		chargeConfigMVC();
 		
 		// Affichage des routes configurées à partir de la Map
-		logger.debug(configRoutes);
+		if (logger.isDebugEnabled()) {
+			logger.debug(configRoutes);			
+		}
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String chemin = request.getPathInfo();
 		
-		logger.debug(chemin);
+		if (logger.isDebugEnabled()) {
+			logger.debug(chemin);			
+		}
 		
 		// Si on ne demande rien, retour à index.html
 		if ((chemin == null) || "/".equals(chemin)) {
-		    RequestDispatcher reqDisp = request.getRequestDispatcher("/index.html");
-		    reqDisp.forward(request, response);
+		    request.getRequestDispatcher(PAGE_ACCUEIL).forward(request, response);
 		    return;
 		}
 		
@@ -61,13 +67,14 @@ public class Dispatcher extends HttpServlet {
 		// Récupération du nom de la classe
 		String nomClasse = configRoutes.get(commande).getClasse();
 		
-		logger.debug(nomClasse);
+		if (logger.isDebugEnabled()) {
+			logger.debug(nomClasse);			
+		}
 		
 		if (nomClasse.trim().isEmpty()) {
 		// Chaine vide
-			RequestDispatcher reqDisp = request.getRequestDispatcher("/WEB-INF/jsp/probleme.jsp");
 			request.setAttribute("message", "Nom de classe non renseigné pour la commande " + commande);
-		    reqDisp.forward(request, response);
+			request.getRequestDispatcher(PAGE_PROBLEME).forward(request, response);
 		} else {
 			try {
 			    // Récupération de la classe de traitement
@@ -79,8 +86,7 @@ public class Dispatcher extends HttpServlet {
 			} catch (ClassNotFoundException cne) {
 				logger.error("Classe introuvable : " + nomClasse,cne);
 			    request.setAttribute("message", "Classe " + nomClasse + " non trouvée !");
-			    RequestDispatcher reqDisp = request.getRequestDispatcher("/WEB-INF/jsp/probleme.jsp");
-			    reqDisp.forward(request, response);
+			    request.getRequestDispatcher(PAGE_PROBLEME).forward(request, response);
 			} catch (InstantiationException ie) {
 			// impossible d'instancier cette classe !
 				logger.error("Impossible d'instancier la classe " + nomClasse,ie);
@@ -102,7 +108,9 @@ public class Dispatcher extends HttpServlet {
 		
 		String fichierConfig = getServletContext().getInitParameter("mvc-config");
 		
-		logger.info("Chargement du fichier de configuration MVC : " + fichierConfig);
+		if (logger.isInfoEnabled()) {
+			logger.info("Chargement du fichier de configuration MVC : " + fichierConfig);			
+		}
 		
 		// Instanciation d'un builder de document
 		SAXBuilder sbx = new SAXBuilder();
@@ -138,14 +146,18 @@ public class Dispatcher extends HttpServlet {
 		if (listeRoutes.size() != 0) {
 		// Liste non vide
 			
-			logger.debug("------------------------------------------------------");
+			if (logger.isDebugEnabled()) {
+				logger.debug("------------------------------------------------------");				
+			}
 			// Parcours des éléments de type route
 			for (Element el : listeRoutes) {
-				logger.debug("Element : " + el.getAttributeValue("name"));
-				logger.debug("Nom :  " + el.getChildText("nom"));
-				logger.debug("Classe :  " + el.getChildText("classe"));
-				logger.debug("Vue :  " + el.getChildText("vue"));
-				logger.debug("------------------------------------------------------");
+				if (logger.isDebugEnabled()) {
+					logger.debug("Element : " + el.getAttributeValue("name"));
+					logger.debug("Nom :  " + el.getChildText("nom"));
+					logger.debug("Classe :  " + el.getChildText("classe"));
+					logger.debug("Vue :  " + el.getChildText("vue"));
+					logger.debug("------------------------------------------------------");					
+				}
 				
 				//Ajout de la route dans la Map
 				configRoutes.put(el.getChildText("nom"), new Route(el.getChildText("classe"),el.getChildText("vue")));
@@ -153,10 +165,14 @@ public class Dispatcher extends HttpServlet {
 			}
 			
 		} else {
-			logger.info("ATTENTION : la configuration est vide, aucune route chargée dans l'application !");
+			if (logger.isInfoEnabled()) {
+				logger.info("ATTENTION : la configuration est vide, aucune route chargée dans l'application !");				
+			}
 		}		
 		
-		logger.info("Fichier chargé avec succès");
+		if (logger.isInfoEnabled()) {
+			logger.info("Fichier chargé avec succès");			
+		}
 		
 	}
 
