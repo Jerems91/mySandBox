@@ -1,4 +1,4 @@
-package com.jerems91.custommvc.controller.dispatch;
+package com.jerems91.jeremsmvc.controller.dispatch;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -18,7 +18,7 @@ import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 
-import com.jerems91.custommvc.controller.beans.Route;
+import com.jerems91.jeremsmvc.controller.beans.Route;
 
 /**
  * Servlet implementation class Dispatcher

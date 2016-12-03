@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
-	<display-name>CustomMVC</display-name>
+	<display-name>JeremsMVC</display-name>
 	<!-- Décaration des paramètres de contexte de l'application -->
 	<context-param>
 		<param-name>log4jConfiguration</param-name>
@@ -12,7 +12,7 @@
 	</context-param>
 	<servlet>
 		<servlet-name>Dispatcher</servlet-name>
-		<servlet-class>com.jerems91.custommvc.controller.dispatch.Dispatcher</servlet-class>
+		<servlet-class>com.jerems91.jeremsmvc.controller.dispatch.Dispatcher</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<!-- Déclaration des mappings des Servlets -->
