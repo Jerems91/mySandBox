@@ -1,4 +1,4 @@
-package com.jerems91.jeremsmvc.controleur.routes;
+package com.jerems91.jeremsmvc.controleur.traitements;
 
 import java.io.IOException;
 
@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class Traitement implements IRoute {
+import com.jerems91.jeremsmvc.controleur.dispatch.ITraitement;
+
+public class Traitement implements ITraitement {
 	
 	private static final Logger logger = LogManager.getLogger(Traitement.class);
 

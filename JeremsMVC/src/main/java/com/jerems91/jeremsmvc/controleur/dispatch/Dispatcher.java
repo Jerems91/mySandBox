@@ -18,7 +18,6 @@ import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 
 import com.jerems91.jeremsmvc.controleur.beans.Route;
-import com.jerems91.jeremsmvc.controleur.routes.IRoute;
 
 /**
  * Servlet implementation class Dispatcher
@@ -90,7 +89,7 @@ public class Dispatcher extends HttpServlet {
 			    // Récupération de la classe de traitement
 				Class<?> c = Class.forName(nomClasse);
 				// Instanciation de la classe de traitement
-			    IRoute ir = (IRoute) c.newInstance();
+			    ITraitement ir = (ITraitement) c.newInstance();
 			    // Appel de la méthode de traitement dans la classe
 			    ir.routeRequete(request, response,configRoutes.get(commande).getVue());
 			} catch (ClassNotFoundException cne) {
