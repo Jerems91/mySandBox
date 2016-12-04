@@ -9,17 +9,17 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class MonTraitement implements IRoute {
+public class Traitement implements IRoute {
 	
-	private static final Logger logger = LogManager.getLogger(MonTraitement.class);
+	private static final Logger logger = LogManager.getLogger(Traitement.class);
 
 	public void routeRequete(HttpServletRequest request, HttpServletResponse response, String vue) throws IOException, ServletException {
 		if (logger.isDebugEnabled()) {
-			logger.debug("Passage dans la classe MonTraitement");
+			logger.debug("Passage dans la classe " + this.getClass().getName());
 			logger.debug("Vue à afficher : " + vue);			
 		}
 		request.setAttribute("vue", vue);
-		request.setAttribute("traitement", "MonTraitement");
+		request.setAttribute("traitement", this.getClass().getName());
 		request.getRequestDispatcher(vue).forward(request, response);
 	}		
 

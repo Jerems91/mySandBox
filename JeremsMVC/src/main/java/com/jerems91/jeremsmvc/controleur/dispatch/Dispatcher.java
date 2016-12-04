@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -29,16 +28,26 @@ public class Dispatcher extends HttpServlet {
 	
 	private static final Logger logger = LogManager.getLogger(Dispatcher.class);
 	
-	private static final String PAGE_ACCUEIL = "/index.html";
-	private static final String PAGE_PROBLEME = "/WEB-INF/jsp/probleme.jsp";
+	private static final String MVC_CONFIG = "mvcConfig";
 	
+	private static final String PAGE_ACCUEIL = "pageAccueil";
+	private static final String PAGE_PROBLEME = "pageProbleme";
+	
+	private String pageAccueil;
+	private String pageProbleme;
 	private Map<String,Route> configRoutes;
 	
 	@Override
 	public void init() throws ServletException {
 		super.init();
 		
-		// Chargement de la config MVC		
+		// Récupération du chemin et du nom de la page d'accueil depuis le contexte de l'application
+		pageAccueil = getServletContext().getInitParameter(PAGE_ACCUEIL);
+		
+		// Récupération du chemin et du nom de la page d'erreur depuis le contexte de l'application
+		pageProbleme = getServletContext().getInitParameter(PAGE_PROBLEME);
+		
+		// Chargement de la config MVC
 		chargeConfigMVC();
 		
 		// Affichage des routes configurées à partir de la Map
@@ -49,6 +58,7 @@ public class Dispatcher extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		// Récupération du chemin de traitement demandé
 		String chemin = request.getPathInfo();
 		
 		if (logger.isDebugEnabled()) {
@@ -57,7 +67,7 @@ public class Dispatcher extends HttpServlet {
 		
 		// Si on ne demande rien, retour à index.html
 		if ((chemin == null) || "/".equals(chemin)) {
-		    request.getRequestDispatcher(PAGE_ACCUEIL).forward(request, response);
+		    request.getRequestDispatcher(pageAccueil).forward(request, response);
 		    return;
 		}
 		
@@ -74,7 +84,7 @@ public class Dispatcher extends HttpServlet {
 		if (nomClasse.trim().isEmpty()) {
 		// Chaine vide
 			request.setAttribute("message", "Nom de classe non renseigné pour la commande " + commande);
-			request.getRequestDispatcher(PAGE_PROBLEME).forward(request, response);
+			request.getRequestDispatcher(pageProbleme).forward(request, response);
 		} else {
 			try {
 			    // Récupération de la classe de traitement
@@ -86,7 +96,7 @@ public class Dispatcher extends HttpServlet {
 			} catch (ClassNotFoundException cne) {
 				logger.error("Classe introuvable : " + nomClasse,cne);
 			    request.setAttribute("message", "Classe " + nomClasse + " non trouvée !");
-			    request.getRequestDispatcher(PAGE_PROBLEME).forward(request, response);
+			    request.getRequestDispatcher(pageProbleme).forward(request, response);
 			} catch (InstantiationException ie) {
 			// impossible d'instancier cette classe !
 				logger.error("Impossible d'instancier la classe " + nomClasse,ie);
@@ -106,7 +116,8 @@ public class Dispatcher extends HttpServlet {
 	
 	private void chargeConfigMVC() throws ServletException {
 		
-		String fichierConfig = getServletContext().getInitParameter("mvc-config");
+		// Récupération du chemin et du nom du fichier de configuration depuis le contexte de l'application
+		String fichierConfig = getServletContext().getInitParameter(MVC_CONFIG);
 		
 		if (logger.isInfoEnabled()) {
 			logger.info("Chargement du fichier de configuration MVC : " + fichierConfig);			

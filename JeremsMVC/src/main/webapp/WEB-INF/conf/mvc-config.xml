@@ -1,18 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config-mvc>
 	<route name="Traitement">
-		<nom>monTraitement</nom>
-		<classe>com.jerems91.jeremsmvc.controleur.routes.MonTraitement</classe>
+		<nom>Traitement</nom>
+		<classe>com.jerems91.jeremsmvc.controleur.routes.Traitement</classe>
 		<vue>/WEB-INF/jsp/vue.jsp</vue>
 	</route>
 	<route name="Traitement2">
-		<nom>monTraitement2</nom>
-		<classe>com.jerems91.jeremsmvc.controleur.routes.MonTraitement2</classe>
-		<vue>/WEB-INF/jsp/vue.jsp</vue>
-	</route>
-	<route name="Traitement3">
-		<nom>monTraitement3</nom>
-		<classe>com.jerems91.jeremsmvc.controleur.routes.MonTraitement3</classe>
+		<nom>Traitement2</nom>
+		<classe>com.jerems91.jeremsmvc.controleur.routes.Traitement2</classe>
 		<vue>/WEB-INF/jsp/vue.jsp</vue>
 	</route>
 </config-mvc>

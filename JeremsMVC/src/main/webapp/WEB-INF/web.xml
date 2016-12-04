@@ -7,7 +7,15 @@
 		<param-value>/WEB-INF/conf/log4j-config.xml</param-value>
 	</context-param>
 	<context-param>
-		<param-name>mvc-config</param-name>
+		<param-name>pageAccueil</param-name>
+		<param-value>/index.html</param-value>
+	</context-param>
+	<context-param>
+		<param-name>pageProbleme</param-name>
+		<param-value>/WEB-INF/jsp/probleme.jsp</param-value>
+	</context-param>
+	<context-param>
+		<param-name>mvcConfig</param-name>
 		<param-value>/WEB-INF/conf/mvc-config.xml</param-value>
 	</context-param>
 	<servlet>
