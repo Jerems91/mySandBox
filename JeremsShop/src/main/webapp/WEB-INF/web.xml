@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+	<display-name>JeremsShop</display-name>
+	<!-- Décaration des paramètres de contexte de l'application -->
+	<context-param>
+		<param-name>log4jConfiguration</param-name>
+		<param-value>/WEB-INF/conf/log4j-config.xml</param-value>
+	</context-param>
+	<context-param>
+		<param-name>pageAccueil</param-name>
+		<param-value>/index.html</param-value>
+	</context-param>
+	<context-param>
+		<param-name>pageProbleme</param-name>
+		<param-value>/WEB-INF/jsp/probleme.jsp</param-value>
+	</context-param>
+	<context-param>
+		<param-name>mvcConfig</param-name>
+		<param-value>/WEB-INF/conf/mvc-config.xml</param-value>
+	</context-param>
+	<!-- Déclaration des Servlets -->
+	<servlet>
+		<servlet-name>Dispatcher</servlet-name>
+		<servlet-class>com.jerems91.jeremsshop.controleur.dispatch.Dispatcher</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<!-- Déclaration des mappings des Servlets -->
+	<servlet-mapping>
+		<servlet-name>Dispatcher</servlet-name>
+		<url-pattern>/Dispatcher/*</url-pattern>
+	</servlet-mapping>
+	<!-- Déclaration page d'accueil -->
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+</web-app>

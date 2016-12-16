@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn" name="JeremsShop" packages="">
+	<Appenders>
+		<Console name="console" target="SYSTEM_OUT">
+			<PatternLayout pattern="[%date][%level][%logger][%method] - %message%n"/>
+		</Console>
+		<RollingFile name="logFile" fileName="D:\Dev\@@@Data\Logs\JeremsShop\JeremsShop.log" filePattern="D:\Dev\@@@Data\Logs\JeremsShop\$${date:yyyy-MM}/JeremsShop_%d{yyyy-MM-dd}_%i.log.gz">
+			<PatternLayout pattern="[%date][%level][%logger][%method] - %message%n"/>
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="100 MB"/>
+			</Policies>
+		</RollingFile>
+	</Appenders>
+	<Loggers>
+		<Root level="debug">
+			<AppenderRef ref="console"/>
+			<AppenderRef ref="logFile"/>
+		</Root>
+	</Loggers>
+</Configuration>
