@@ -18,6 +18,7 @@ import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 
 import com.jerems91.jeremsshop.controleur.beans.Route;
+import com.jerems91.jeremsshop.modele.Catalogue;
 
 /**
  * Servlet implementation class Dispatcher
@@ -31,6 +32,8 @@ public class Dispatcher extends HttpServlet {
 	
 	private static final String PAGE_ACCUEIL = "pageAccueil";
 	private static final String PAGE_PROBLEME = "pageProbleme";
+	
+	private static final String CATALOGUE = "catalogue";
 	
 	private String pageAccueil;
 	private String pageProbleme;
@@ -52,6 +55,15 @@ public class Dispatcher extends HttpServlet {
 		// Affichage des routes configurées à partir de la Map
 		if (logger.isDebugEnabled()) {
 			logger.debug(configRoutes);			
+		}
+		
+		//Instanciation du catalogue et stockage dans le contexte de l'application
+		Catalogue monCatalogue = new Catalogue();
+		this.getServletContext().setAttribute(CATALOGUE, monCatalogue);
+		
+		// Affichage du contenu du catalogue
+		if (logger.isDebugEnabled()) {
+			logger.debug(monCatalogue);
 		}
 	}
 

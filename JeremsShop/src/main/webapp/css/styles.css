@@ -1,0 +1,27 @@
+@CHARSET "ISO-8859-1";
+
+body {
+	background-color: silver;
+}
+
+h1 {
+	color: blue;
+	text-align: center;
+}
+
+div.accueil {
+	text-align: center;
+	font-weight: bold;
+}
+
+div.boutons {
+	text-align: center;
+}
+
+div.photo {
+	text-align: center;
+}
+
+div.panier {
+	text-align: center;
+}

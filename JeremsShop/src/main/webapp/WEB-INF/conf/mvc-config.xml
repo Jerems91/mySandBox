@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config-mvc>
-	<route name="Traitement">
-		<nom>Traitement</nom>
-		<classe>com.jerems91.jeremsshop.controleur.traitements.Traitement</classe>
-		<vue>/WEB-INF/jsp/vue.jsp</vue>
-	</route>
-	<route name="Traitement2">
-		<nom>Traitement2</nom>
-		<classe>com.jerems91.jeremsshop.controleur.traitements.Traitement2</classe>
-		<vue>/WEB-INF/jsp/vue.jsp</vue>
+	<route name="InitNav">
+		<nom>InitNav</nom>
+		<classe>com.jerems91.jeremsshop.controleur.traitements.TrtInitNav</classe>
+		<vue>/WEB-INF/jsp/produit.jsp</vue>
 	</route>
 </config-mvc>

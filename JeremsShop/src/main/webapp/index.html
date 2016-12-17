@@ -3,14 +3,26 @@
 	<head>
 		<meta charset="ISO-8859-1">
 		<title>Accueil</title>
+		<link rel="stylesheet" type="text/css" href="css/styles.css">
 	</head>
 	<body>
+		<header>
+			<img alt="logo" src="images/logo.png" width="100px">
+			<h1>Bienvenue sur JeremsShop</h1>
+		</header>
 		<article>
-			<a href="Dispatcher/Traitement">Lancer mon Traitement</a>
-			<br><br>
-			<a href="Dispatcher/Traitement2">Lancer mon Traitement2</a>
-			<br><br>
-			<a href="Dispatcher">Lancer aucun traitement</a>
+			<div class="accueil">
+				<p>Bonjour, veuillez cliquer sur le bouton ci-dessous pour commencer vos achats !</p>
+			</div>
+			<br>
+			<div class="boutons">
+				<form action="Dispatcher/InitNav" method="post">
+					<input name="boutique" type="submit" value="Boutique"/>
+				</form>
+			</div>
 		</article>
+		<footer>
+			
+		</footer>
 	</body>
 </html>
