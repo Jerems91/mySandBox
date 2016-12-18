@@ -5,4 +5,24 @@
 		<classe>com.jerems91.jeremsshop.controleur.traitements.TrtInitNav</classe>
 		<vue>/WEB-INF/jsp/produit.jsp</vue>
 	</route>
+	<route name="PrdPrec">
+		<nom>PrdPrec</nom>
+		<classe>com.jerems91.jeremsshop.controleur.traitements.TrtPrdPrec</classe>
+		<vue>/WEB-INF/jsp/produit.jsp</vue>
+	</route>
+	<route name="PrdSuiv">
+		<nom>PrdSuiv</nom>
+		<classe>com.jerems91.jeremsshop.controleur.traitements.TrtPrdSuiv</classe>
+		<vue>/WEB-INF/jsp/produit.jsp</vue>
+	</route>
+	<route name="AjoutPanier">
+		<nom>AjoutPanier</nom>
+		<classe>com.jerems91.jeremsshop.controleur.traitements.TrtAjoutPanier</classe>
+		<vue>/WEB-INF/jsp/produit.jsp</vue>
+	</route>
+	<route name="AffichePanier">
+		<nom>AffichePanier</nom>
+		<classe>com.jerems91.jeremsshop.controleur.traitements.TrtAffichePanier</classe>
+		<vue>/WEB-INF/jsp/panier.jsp</vue>
+	</route>
 </config-mvc>

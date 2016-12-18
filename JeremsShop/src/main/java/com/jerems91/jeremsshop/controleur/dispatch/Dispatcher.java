@@ -18,6 +18,7 @@ import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 
 import com.jerems91.jeremsshop.controleur.beans.Route;
+import com.jerems91.jeremsshop.controleur.utils.CtrlUtils;
 import com.jerems91.jeremsshop.modele.Catalogue;
 
 /**
@@ -28,13 +29,6 @@ public class Dispatcher extends HttpServlet {
 	
 	private static final Logger logger = LogManager.getLogger(Dispatcher.class);
 	
-	private static final String MVC_CONFIG = "mvcConfig";
-	
-	private static final String PAGE_ACCUEIL = "pageAccueil";
-	private static final String PAGE_PROBLEME = "pageProbleme";
-	
-	private static final String CATALOGUE = "catalogue";
-	
 	private String pageAccueil;
 	private String pageProbleme;
 	private Map<String,Route> configRoutes;
@@ -44,10 +38,10 @@ public class Dispatcher extends HttpServlet {
 		super.init();
 		
 		// Récupération du chemin et du nom de la page d'accueil depuis le contexte de l'application
-		pageAccueil = getServletContext().getInitParameter(PAGE_ACCUEIL);
+		pageAccueil = getServletContext().getInitParameter(CtrlUtils.PAGE_ACCUEIL);
 		
 		// Récupération du chemin et du nom de la page d'erreur depuis le contexte de l'application
-		pageProbleme = getServletContext().getInitParameter(PAGE_PROBLEME);
+		pageProbleme = getServletContext().getInitParameter(CtrlUtils.PAGE_PROBLEME);
 		
 		// Chargement de la config MVC
 		chargeConfigMVC();
@@ -59,7 +53,7 @@ public class Dispatcher extends HttpServlet {
 		
 		//Instanciation du catalogue et stockage dans le contexte de l'application
 		Catalogue monCatalogue = new Catalogue();
-		this.getServletContext().setAttribute(CATALOGUE, monCatalogue);
+		this.getServletContext().setAttribute(CtrlUtils.CATALOGUE, monCatalogue);
 		
 		// Affichage du contenu du catalogue
 		if (logger.isDebugEnabled()) {
@@ -128,7 +122,7 @@ public class Dispatcher extends HttpServlet {
 	private void chargeConfigMVC() throws ServletException {
 		
 		// Récupération du chemin et du nom du fichier de configuration depuis le contexte de l'application
-		String fichierConfig = getServletContext().getInitParameter(MVC_CONFIG);
+		String fichierConfig = getServletContext().getInitParameter(CtrlUtils.MVC_CONFIG);
 		
 		if (logger.isInfoEnabled()) {
 			logger.info("Chargement du fichier de configuration MVC : " + fichierConfig);			

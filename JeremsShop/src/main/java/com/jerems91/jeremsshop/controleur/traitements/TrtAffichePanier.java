@@ -12,9 +12,9 @@ import org.apache.logging.log4j.Logger;
 import com.jerems91.jeremsshop.controleur.dispatch.ITraitement;
 import com.jerems91.jeremsshop.controleur.utils.CtrlUtils;
 
-public class TrtInitNav implements ITraitement {
+public class TrtAffichePanier implements ITraitement {
 	
-	private static final Logger logger = LogManager.getLogger(TrtInitNav.class);
+	private static final Logger logger = LogManager.getLogger(TrtAffichePanier.class);
 	
 	public void routeRequete(HttpServletRequest request, HttpServletResponse response, String vue) throws IOException, ServletException {
 		if (logger.isDebugEnabled()) {

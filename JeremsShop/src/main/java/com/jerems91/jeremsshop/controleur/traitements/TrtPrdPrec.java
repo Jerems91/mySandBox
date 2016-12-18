@@ -12,9 +12,9 @@ import org.apache.logging.log4j.Logger;
 import com.jerems91.jeremsshop.controleur.dispatch.ITraitement;
 import com.jerems91.jeremsshop.controleur.utils.CtrlUtils;
 
-public class TrtInitNav implements ITraitement {
+public class TrtPrdPrec implements ITraitement {
 	
-	private static final Logger logger = LogManager.getLogger(TrtInitNav.class);
+	private static final Logger logger = LogManager.getLogger(TrtPrdPrec.class);
 	
 	public void routeRequete(HttpServletRequest request, HttpServletResponse response, String vue) throws IOException, ServletException {
 		if (logger.isDebugEnabled()) {
@@ -22,8 +22,26 @@ public class TrtInitNav implements ITraitement {
 			logger.debug("Vue à afficher : " + vue);
 		}
 		
+		// Récupération du code du produit affiché sur la page d'origine
+		int codeProduitSource = CtrlUtils.getCodeProduitSource(request);
+		
+		// Positionnement sur le premier produit par défaut
+		String codeProduit = "1";
+		
+		if (codeProduitSource != 0) {
+		// Récupération du code produit sous forme d'entier réussie
+			
+			if (codeProduitSource == 1) {
+			// Si produit d'origine = premier produit, on se repositionne sur le dernier produit du catalogue
+				codeProduit = String.valueOf(CtrlUtils.getCatalogueSize(request));
+			} else {
+				codeProduit = String.valueOf(codeProduitSource - 1);				
+			}
+			
+		}
+		
 		// Stockage du produit à afficher, ici le premier car il s'agit du premier accès au catalogue
-		request.setAttribute(CtrlUtils.PRODUIT, CtrlUtils.getProduitFromCatalogue(request,"1"));
+		request.setAttribute(CtrlUtils.PRODUIT, CtrlUtils.getProduitFromCatalogue(request,codeProduit));
 		
 		// Affichage de la vue
 		request.getRequestDispatcher(vue).forward(request, response);

@@ -14,7 +14,7 @@ public class Catalogue implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 436964872104112661L;
+	private static final long serialVersionUID = 2752104110727443483L;
 	private Map<String,Produit> produits;
 
 	public Map<String, Produit> getProduits() {

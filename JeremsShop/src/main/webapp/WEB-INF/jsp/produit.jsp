@@ -30,10 +30,21 @@ import="com.jerems91.jeremsshop.modele.Produit"%>
 			</div>
 			<br>
 			<div class="boutons">
-				<form action="Controleur?pg=${produit.code}" method="post">
-					<input name="achat" type="submit" value="Acheter"/>
+				<form action="PrdPrec" method="post">
+					<input name="source" type="hidden" value="${produit.code}">
+					<input name="precedent" type="submit" value="Précédent"/>
+				</form>
+				<form action="PrdSuiv" method="post">
+					<input name="source" type="hidden" value="${produit.code}">
 					<input name="suivant" type="submit" value="Suivant"/>
-					<input name="panier" type="submit" value="Panier"/>
+				</form>
+				<form action="AjoutPanier" method="post">
+					<input name="source" type="hidden" value="${produit.code}">
+					<input name="ajout" type="submit" value="Ajouter au panier"/>
+				</form>
+				<form action="AffichePanier" method="post">
+					<input name="source" type="hidden" value="${produit.code}">
+					<input name="panier" type="submit" value="Afficher le panier"/>
 				</form>
 			</div>
 		</article>
