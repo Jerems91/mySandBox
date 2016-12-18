@@ -12,9 +12,9 @@ import org.apache.logging.log4j.Logger;
 import com.jerems91.jeremsshop.controleur.dispatch.ITraitement;
 import com.jerems91.jeremsshop.controleur.utils.CtrlUtils;
 
-public class TrtPrdSuiv implements ITraitement {
+public class TrtRetourPanier implements ITraitement {
 	
-	private static final Logger logger = LogManager.getLogger(TrtPrdSuiv.class);
+	private static final Logger logger = LogManager.getLogger(TrtRetourPanier.class);
 	
 	public void routeRequete(HttpServletRequest request, HttpServletResponse response, String vue) throws IOException, ServletException {
 		if (logger.isDebugEnabled()) {
@@ -31,14 +31,12 @@ public class TrtPrdSuiv implements ITraitement {
 		if (codeProduitSource != 0) {
 		// Récupération du code produit sous forme d'entier réussie
 			
-			if (codeProduitSource != CtrlUtils.getCatalogueSize(request)) {
-			// Si le produit d'origine n'est pas le dernier produit, on passe au suivant
-				codeProduit = String.valueOf(codeProduitSource + 1);
-			} 
+			// Positionnement du code du produit à afficher en retour depuis le panier
+			codeProduit = String.valueOf(codeProduitSource);
 			
 		}
 		
-		// Stockage du produit à afficher dans la request
+		// Stockage du produit à afficher, normalement on revient sur le produit consulté avant l'affichage du panier
 		request.setAttribute(CtrlUtils.PRODUIT, CtrlUtils.getProduitFromCatalogue(request,codeProduit));
 		
 		// Affichage de la vue

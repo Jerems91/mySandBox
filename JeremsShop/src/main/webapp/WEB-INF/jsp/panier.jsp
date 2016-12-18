@@ -6,12 +6,12 @@ import="com.jerems91.jeremsshop.modele.Panier,com.jerems91.jeremsshop.modele.Ach
 	<head>
 		<meta charset="ISO-8859-1">
 		<title>Panier</title>
-		<link rel="stylesheet" type="text/css" href="css/styles.css">
+		<link rel="stylesheet" type="text/css" href="../css/styles.css">
 	</head>
 	<body>
 	<!-- JSP avec JSTL -->
 		<header>
-			<img alt="logo" src="images/logo.png" width="100px">
+			<img alt="logo" src="../images/logo.png" width="100px">
 			<h1>Bienvenue sur JeremsShop</h1>
 		</header>
 		<hr>
@@ -38,8 +38,9 @@ import="com.jerems91.jeremsshop.modele.Panier,com.jerems91.jeremsshop.modele.Ach
 			<hr>
 			<br>
 			<div class="boutons">
-				<form action="Controleur?pg=${page_retour}" method="post">
-					<input name="${retour_panier}" type="submit" value="Continuer mes achats"/>
+				<form action="RetourPanier" method="post">
+					<input name="source" type="hidden" value="${produit.code}">
+					<input name="continuer" type="submit" value="Continuer mes achats"/>
 				</form>
 			</div>
 		</article>

@@ -40,7 +40,7 @@ public class TrtPrdPrec implements ITraitement {
 			
 		}
 		
-		// Stockage du produit à afficher, ici le premier car il s'agit du premier accès au catalogue
+		// Stockage du produit à afficher dans la request
 		request.setAttribute(CtrlUtils.PRODUIT, CtrlUtils.getProduitFromCatalogue(request,codeProduit));
 		
 		// Affichage de la vue

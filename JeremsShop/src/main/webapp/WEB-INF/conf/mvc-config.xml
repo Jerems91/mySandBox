@@ -25,4 +25,9 @@
 		<classe>com.jerems91.jeremsshop.controleur.traitements.TrtAffichePanier</classe>
 		<vue>/WEB-INF/jsp/panier.jsp</vue>
 	</route>
+	<route name="RetourPanier">
+		<nom>RetourPanier</nom>
+		<classe>com.jerems91.jeremsshop.controleur.traitements.TrtRetourPanier</classe>
+		<vue>/WEB-INF/jsp/produit.jsp</vue>
+	</route>
 </config-mvc>

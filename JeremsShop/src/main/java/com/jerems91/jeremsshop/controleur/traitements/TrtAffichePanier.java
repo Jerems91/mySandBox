@@ -22,8 +22,22 @@ public class TrtAffichePanier implements ITraitement {
 			logger.debug("Vue à afficher : " + vue);
 		}
 		
-		// Stockage du produit à afficher, ici le premier car il s'agit du premier accès au catalogue
-		request.setAttribute(CtrlUtils.PRODUIT, CtrlUtils.getProduitFromCatalogue(request,"1"));
+		// Récupération du code du produit affiché sur la page d'origine
+		int codeProduitSource = CtrlUtils.getCodeProduitSource(request);
+		
+		// Positionnement sur le premier produit par défaut
+		String codeProduit = "1";
+		
+		if (codeProduitSource != 0) {
+		// Récupération du code produit sous forme d'entier réussie
+			
+			// Positionnement du code produit pour le retour depuis le panier
+			codeProduit = String.valueOf(codeProduitSource);
+			
+		}
+		
+		// Stockage du produit à afficher, normalement on reste sur le produit choisi pour l'achat
+		request.setAttribute(CtrlUtils.PRODUIT, CtrlUtils.getProduitFromCatalogue(request,codeProduit));
 		
 		// Affichage de la vue
 		request.getRequestDispatcher(vue).forward(request, response);

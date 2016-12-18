@@ -25,3 +25,7 @@ div.photo {
 div.panier {
 	text-align: center;
 }
+
+form.produit {
+	display: inline;
+}
