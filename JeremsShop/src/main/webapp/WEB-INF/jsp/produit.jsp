@@ -17,17 +17,17 @@ import="com.jerems91.jeremsshop.modele.Produit"%>
 		<hr>
 		<article>
 			<h1>${produit.nom}</h1>
-			<div class="photo">
-				<img alt="${produit.nom}" src="${produit.cheminImage}">
-			</div>
-			<br>
-			<div class="prix">
-				Prix : ${produit.prix} Euros
-			</div>
-			<br>
-			<div class="prix">
-				<p>Description : ${produit.description}</p>
-			</div>
+			<table class="fiche">
+				<tr>
+					<td class="photo">
+						<img class="produit" title="${produit.nom}" src="${produit.cheminImage}">
+					</td>
+					<td class="infos">
+						<p class="prix">Prix : ${produit.prix} Euros</p>
+						<p class="description">${produit.description}</p>
+					</td>
+				</tr>
+			</table>
 			<br>
 			<div class="boutons">
 				<form class="produit" action="PrdPrec" method="post">

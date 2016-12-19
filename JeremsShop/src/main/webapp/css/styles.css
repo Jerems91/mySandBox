@@ -14,16 +14,37 @@ div.accueil {
 	font-weight: bold;
 }
 
+div.panier {
+	text-align: center;
+}
+
 div.boutons {
 	text-align: center;
 }
 
-div.photo {
+table.fiche {
+	margin: auto;
+}
+
+td.photo {
+	vertical-align: middle;
+}
+
+td.infos {
+	vertical-align: top;
+}
+
+p.prix {
+	font-weight: bolder;
 	text-align: center;
 }
 
-div.panier {
-	text-align: center;
+p.description {
+	text-align: justify;
+}
+
+img.produit {
+	height: 200px;
 }
 
 form.produit {
