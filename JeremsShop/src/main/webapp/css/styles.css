@@ -11,11 +11,12 @@ h1 {
 
 div.accueil {
 	text-align: center;
-	font-weight: bold;
+	font-weight: bolder;
 }
 
 div.panier {
 	text-align: center;
+	font-weight: bolder;
 }
 
 div.boutons {
@@ -26,12 +27,57 @@ table.fiche {
 	margin: auto;
 }
 
+table.panier {
+	margin: auto;
+	border-collapse: collapse;
+}
+
+th.panier {
+	border-width: 1px;
+	border-color: black;
+	border-style: solid;
+	padding: 5px;
+	background-color: #bbbbff;	
+}
+
 td.photo {
 	vertical-align: middle;
 }
 
 td.infos {
 	vertical-align: top;
+}
+
+td.nom {
+	text-align: left;
+	border-width: 1px;
+	border-color: black;
+	border-style: solid;
+	padding: 5px;
+}
+
+td.prix {
+	text-align: right;
+	border-width: 1px;
+	border-color: black;
+	border-style: solid;
+	padding: 5px;
+}
+
+td.quantite {
+	text-align: right;
+	border-width: 1px;
+	border-color: black;
+	border-style: solid;
+	padding: 5px;
+}
+
+td.montant {
+	text-align: right;
+	border-width: 1px;
+	border-color: black;
+	border-style: solid;
+	padding: 5px;
 }
 
 p.prix {

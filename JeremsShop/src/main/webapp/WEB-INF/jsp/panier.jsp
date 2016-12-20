@@ -19,23 +19,31 @@ import="com.jerems91.jeremsshop.modele.Panier,com.jerems91.jeremsshop.modele.Ach
 			<c:choose>
 				<c:when test="${empty panier}">
 					<h1>Votre panier est vide !</h1>
-					<hr>
 				</c:when>
 				<c:otherwise>
 					<h1>Contenu du panier</h1>
-					<hr>
+					<table class="panier">
+						<tr>
+							<th class="panier">Produit</th>
+							<th class="panier">Prix (Euros)</th>
+							<th class="panier">Nb</th>
+							<th class="panier">Montant (Euros)</th>
+						</tr>
+						<c:forEach items="${panier.achats.values()}" var="achat">
+							 <tr>
+							 	<td class="nom">${achat.produit.nom}</td>
+							 	<td class="prix">${achat.produit.prix}</td>
+							 	<td class="quantite">${achat.quantite}</td>
+							 	<td class="montant">${achat.montant}</td>
+							 </tr>
+						</c:forEach>
+					</table>
+					<br>
 					<div class="panier">
-						<ol>
-							<c:forEach items="${panier.achats.values()}" var="achat">
-								<li>Produit : ${achat.produit.nom}, Prix : ${achat.produit.prix} Euros, Quantité : ${achat.quantite}, Montant : ${achat.montant} Euros</li>
-							</c:forEach>
-						</ol>
-						<br>
-						Montant Total du Panier : ${panier.montantTotal} Euros
+						Montant Total : ${panier.montantTotal} Euros
 					</div>
 				</c:otherwise>
 			</c:choose>
-			<hr>
 			<br>
 			<div class="boutons">
 				<form action="RetourPanier" method="post">
