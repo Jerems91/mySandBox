@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalogue>
+	<produit name="bouilloire">
+		<code>1</code>
+		<nom>Bouilloire</nom>
+		<prix>99.99</prix>
+		<titrePage>Bouilloire</titrePage>
+		<cheminImage>../images/bouilloire.png</cheminImage>
+		<description>Quelle superbe bouilloire !!!</description>
+	</produit>
+	<produit name="cuisiniere">
+		<code>2</code>
+		<nom>Cuisinière</nom>
+		<prix>499.95</prix>
+		<titrePage>Cuisinière</titrePage>
+		<cheminImage>../images/cuisiniere.png</cheminImage>
+		<description>Quelle superbe cuisinière !!!</description>
+	</produit>
+	<produit name="machine-cafe">
+		<code>3</code>
+		<nom>Machine à café</nom>
+		<prix>129.49</prix>
+		<titrePage>Machine à café</titrePage>
+		<cheminImage>../images/machine-cafe.png</cheminImage>
+		<description>Quelle superbe machine à café !!!</description>
+	</produit>
+	<produit name="machine-pain">
+		<code>4</code>
+		<nom>Machine à pain</nom>
+		<prix>99.99</prix>
+		<titrePage>Machine à pain</titrePage>
+		<cheminImage>../images/machine-pain.png</cheminImage>
+		<description>Quelle superbe machine à pain !!!</description>
+	</produit>
+	<produit name="micro-ondes">
+		<code>5</code>
+		<nom>Micro-ondes</nom>
+		<prix>259</prix>
+		<titrePage>Micro-ondes</titrePage>
+		<cheminImage>../images/micro-ondes.png</cheminImage>
+		<description>Quel superbe micro-ondes !!!</description>
+	</produit>
+	<produit name="shaker">
+		<code>6</code>
+		<nom>Shaker</nom>
+		<prix>119.99</prix>
+		<titrePage>Shaker</titrePage>
+		<cheminImage>../images/shaker.png</cheminImage>
+		<description>Quel superbe shaker !!!</description>
+	</produit>
+	<produit name="toaster">
+		<code>7</code>
+		<nom>Toaster</nom>
+		<prix>129.99</prix>
+		<titrePage>Toaster</titrePage>
+		<cheminImage>../images/toaster.png</cheminImage>
+		<description>Quel superbe toaster !!!</description>
+	</produit>
+</catalogue>

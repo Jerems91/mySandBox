@@ -17,6 +17,8 @@ public class CtrlUtils {
 	
 	public static final String MVC_CONFIG = "mvcConfig";
 	
+	public static final String FICHIER_CATALOGUE = "fichierCatalogue";
+	
 	public static final String PAGE_ACCUEIL = "pageAccueil";
 	public static final String PAGE_PROBLEME = "pageProbleme";
 	

@@ -20,6 +20,7 @@ import org.jdom2.input.SAXBuilder;
 import com.jerems91.jeremsshop.controleur.beans.Route;
 import com.jerems91.jeremsshop.controleur.utils.CtrlUtils;
 import com.jerems91.jeremsshop.modele.Catalogue;
+import com.jerems91.jeremsshop.modele.Produit;
 
 /**
  * Servlet implementation class Dispatcher
@@ -51,9 +52,14 @@ public class Dispatcher extends HttpServlet {
 			logger.debug(configRoutes);			
 		}
 		
-		//Instanciation du catalogue et stockage dans le contexte de l'application
+		// Instanciation du catalogue
 		Catalogue monCatalogue = new Catalogue();
-		this.getServletContext().setAttribute(CtrlUtils.CATALOGUE, monCatalogue);
+		
+		// Chargement du catalogue
+		chargeCatalogue(monCatalogue);
+		
+		// Stockage dans le contexte de l'application
+		getServletContext().setAttribute(CtrlUtils.CATALOGUE, monCatalogue);
 		
 		// Affichage du contenu du catalogue
 		if (logger.isDebugEnabled()) {
@@ -192,4 +198,87 @@ public class Dispatcher extends HttpServlet {
 		
 	}
 
+	private void chargeCatalogue(Catalogue monCatalogue) throws ServletException {
+		
+		// Récupération du chemin et du nom du fichier du catalogue de produits depuis le contexte de l'application
+		String fichierCatalogue = getServletContext().getInitParameter(CtrlUtils.FICHIER_CATALOGUE);
+		
+		if (logger.isInfoEnabled()) {
+			logger.info("Chargement du catalogue de produits : " + fichierCatalogue);			
+		}
+		
+		// Instanciation d'un builder de document
+		SAXBuilder sbx = new SAXBuilder();
+		
+		// Parsing du fichier du catalogue XML et instantiation d'un Document
+		Document doc;		
+		try {
+			 doc = sbx.build(getServletContext().getResourceAsStream(fichierCatalogue));
+		} catch (IOException ioe) {
+			logger.error("Problème de chargement du fichier catalogue : " + fichierCatalogue,ioe);
+			throw new ServletException("Erreur dans la configuration de l'application",ioe);
+		} catch (JDOMException jdmoe) {
+			logger.error("Problème de parsing du fichier catalogue : " + fichierCatalogue,jdmoe);
+			throw new ServletException("Erreur dans la configuration de l'application",jdmoe);
+		}
+		
+		// Récupération de l'élément racine du document
+		Element racine = doc.getRootElement();
+		
+		if (! "catalogue".equals(racine.getName())) {
+		// Racine incorrecte
+			
+			logger.error("La racine du document est incorrecte : " + racine.getName());
+			throw new ServletException("Erreur dans la configuration de l'application");			
+		}
+		
+		// Récupération de la liste des éléments de type produit du document
+		List<Element> listeProduits = racine.getChildren("produit");
+		
+		if (listeProduits.size() != 0) {
+		// Liste non vide
+			
+			if (logger.isDebugEnabled()) {
+				logger.debug("------------------------------------------------------");				
+			}
+			// Parcours des éléments de type produit
+			for (Element el : listeProduits) {
+				if (logger.isDebugEnabled()) {
+					logger.debug("Element : " + el.getAttributeValue("name"));
+					logger.debug("Code :  " + el.getChildText("code"));
+					logger.debug("Nom :  " + el.getChildText("nom"));
+					logger.debug("Prix :  " + el.getChildText("prix"));
+					logger.debug("Titre Page :  " + el.getChildText("titrePage"));
+					logger.debug("Chemin Image :  " + el.getChildText("cheminImage"));
+					logger.debug("Description :  " + el.getChildText("description"));
+					logger.debug("------------------------------------------------------");					
+				}
+				
+				// Ajout du produit dans le catalogue
+				try {
+					monCatalogue.getProduits().put(el.getChildText("code"),new Produit(el.getChildText("code"),
+							   el.getChildText("nom"),
+							   Double.parseDouble(el.getChildText("prix")),
+							   el.getChildText("titrePage"),
+							   el.getChildText("cheminImage"),
+							   el.getChildText("description")));					
+				} catch (NumberFormatException nfe) {
+					logger.error("Problème de conversion de String en nombre : " + el.getChildText("prix"),nfe);
+					throw new ServletException("Erreur dans la configuration de l'application",nfe);
+				}
+				
+			}
+			
+		} else {
+			if (logger.isInfoEnabled()) {
+				logger.info("ATTENTION : le catalogue est vide, aucun produit chargé dans l'application !");				
+			}
+		}		
+		
+		if (logger.isInfoEnabled()) {
+			logger.info("Fichier chargé avec succès");
+		}
+		
+	}
+	
 }
