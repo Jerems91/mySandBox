@@ -46,7 +46,11 @@ import="com.jerems91.jeremsshop.modele.Panier,com.jerems91.jeremsshop.modele.Ach
 			</c:choose>
 			<br>
 			<div class="boutons">
-				<form action="RetourPanier" method="post">
+				<form class="panier" action="VidePanier" method="post">
+					<input name="source" type="hidden" value="${produit.code}">
+					<input name="vider" type="submit" value="Vider le panier"/>
+				</form>
+				<form class="panier" action="RetourPanier" method="post">
 					<input name="source" type="hidden" value="${produit.code}">
 					<input name="continuer" type="submit" value="Continuer mes achats"/>
 				</form>

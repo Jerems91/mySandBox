@@ -11,10 +11,11 @@ import org.apache.logging.log4j.Logger;
 
 import com.jerems91.jeremsshop.controleur.dispatch.ITraitement;
 import com.jerems91.jeremsshop.controleur.utils.CtrlUtils;
+import com.jerems91.jeremsshop.modele.Panier;
 
-public class TrtAffichePanier implements ITraitement {
+public class TrtVidePanier implements ITraitement {
 	
-	private static final Logger logger = LogManager.getLogger(TrtAffichePanier.class);
+	private static final Logger logger = LogManager.getLogger(TrtVidePanier.class);
 	
 	public void routeRequete(HttpServletRequest request, HttpServletResponse response, String vue) throws IOException, ServletException {
 		if (logger.isDebugEnabled()) {
@@ -31,13 +32,23 @@ public class TrtAffichePanier implements ITraitement {
 		if (codeProduitSource != 0) {
 		// Récupération du code produit sous forme d'entier réussie
 			
-			// Positionnement du code produit pour le retour depuis le panier
+			// Positionnement du code du produit à afficher en retour depuis le panier
 			codeProduit = String.valueOf(codeProduitSource);
 			
 		}
 		
 		// Stockage du produit affiché sur la page d'origine
 		request.setAttribute(CtrlUtils.PRODUIT, CtrlUtils.getProduitFromCatalogue(request,codeProduit));
+		
+		// Récupération du panier depuis la session
+		Panier monPanier = CtrlUtils.getPanierFromSession(request.getSession(true));
+		
+		// Vidage du panier et remise à 0 du montant total
+		monPanier.getAchats().clear();		
+		monPanier.setMontantTotal(0);
+		
+		// Stockage du panier vide dans la session
+		CtrlUtils.setPanierToSession(request.getSession(true), monPanier);
 		
 		// Affichage de la vue
 		request.getRequestDispatcher(vue).forward(request, response);

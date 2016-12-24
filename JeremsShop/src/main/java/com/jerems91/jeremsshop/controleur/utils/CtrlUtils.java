@@ -83,7 +83,7 @@ public class CtrlUtils {
 		monPanier.setMontantTotal(monPanier.getMontantTotal() + monAchat.getProduit().getPrix());
 		
 		// Stockage du panier dans la session
-		request.getSession(true).setAttribute(PANIER, monPanier);
+		setPanierToSession(request.getSession(true),monPanier);
 		
 		return monPanier.getMontantTotal();
 	}
@@ -98,6 +98,13 @@ public class CtrlUtils {
 		}
 		
 		return monPanier;
+	}
+	
+	public static void setPanierToSession(HttpSession session, Panier monPanier) {
+		
+		// Stockage du panier dans la session
+		session.setAttribute(PANIER,monPanier);		
+		
 	}
 	
 }

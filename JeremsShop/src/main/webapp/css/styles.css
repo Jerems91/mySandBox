@@ -96,3 +96,7 @@ img.produit {
 form.produit {
 	display: inline;
 }
+
+form.panier {
+	display: inline;
+}
