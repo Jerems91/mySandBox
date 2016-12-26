@@ -43,12 +43,16 @@ public class TrtAjoutPanier implements ITraitement {
 		
 		if (logger.isDebugEnabled()) {
 			logger.debug("Produit choisi : " + CtrlUtils.getProduitFromCatalogue(request,codeProduit));
+			logger.debug("Nombre Total d'articles du panier : " + CtrlUtils.getPanierFromSession(request.getSession(true)).getNombreTotal());
 			logger.debug("Montant Total du panier : " + montantTotal);
 			logger.debug("Mon panier : " + CtrlUtils.getPanierFromSession(request.getSession(true)));
 		}
 		
 		// Stockage du produit à afficher, normalement on reste sur le produit choisi pour l'achat
 		request.setAttribute(CtrlUtils.PRODUIT, CtrlUtils.getProduitFromCatalogue(request,codeProduit));
+		
+		// Stockage du message à afficher sur la page produit suite à l'ajout dans le panier
+		request.setAttribute(CtrlUtils.MSG_PRODUIT, CtrlUtils.AJOUT_ARTICLE);
 		
 		// Affichage de la vue
 		request.getRequestDispatcher(vue).forward(request, response);

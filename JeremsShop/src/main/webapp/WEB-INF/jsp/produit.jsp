@@ -13,6 +13,12 @@ import="com.jerems91.jeremsshop.modele.Produit"%>
 		<header>
 			<img alt="logo" src="../images/logo.png" width="100px">
 			<h1>Bienvenue sur JeremsShop</h1>
+			<div class="nbpanier">Nb Articles : 
+				<c:choose>
+					<c:when test="${empty panier}">0</c:when>
+					<c:otherwise>${panier.nombreTotal}</c:otherwise>
+				</c:choose>
+			</div>
 		</header>
 		<hr>
 		<article>
@@ -49,6 +55,7 @@ import="com.jerems91.jeremsshop.modele.Produit"%>
 			</div>
 		</article>
 		<hr>
+		<div class="produit">${msgProduit}</div>
 		<footer>			
 		</footer>
 	</body>

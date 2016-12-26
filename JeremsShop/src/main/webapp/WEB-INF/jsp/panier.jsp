@@ -17,7 +17,7 @@ import="com.jerems91.jeremsshop.modele.Panier,com.jerems91.jeremsshop.modele.Ach
 		<hr>
 		<article>
 			<c:choose>
-				<c:when test="${empty panier}">
+				<c:when test="${empty panier || panier.montantTotal == 0}">
 					<h1>Votre panier est vide !</h1>
 				</c:when>
 				<c:otherwise>
@@ -40,7 +40,8 @@ import="com.jerems91.jeremsshop.modele.Panier,com.jerems91.jeremsshop.modele.Ach
 					</table>
 					<br>
 					<div class="panier">
-						Montant Total : ${panier.montantTotal} Euros
+						Nombre Total d'articles : ${panier.nombreTotal}<br>
+						Montant Total (Euros) : ${panier.montantTotal}
 					</div>
 				</c:otherwise>
 			</c:choose>

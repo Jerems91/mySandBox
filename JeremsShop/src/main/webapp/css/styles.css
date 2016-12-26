@@ -19,6 +19,17 @@ div.panier {
 	font-weight: bolder;
 }
 
+div.produit {
+	text-align: center;
+	color: blue;
+}
+
+div.nbpanier {
+	text-align: right;
+	color: blue;
+	font-weight: bolder;
+}
+
 div.boutons {
 	text-align: center;
 }

@@ -43,8 +43,9 @@ public class TrtVidePanier implements ITraitement {
 		// Récupération du panier depuis la session
 		Panier monPanier = CtrlUtils.getPanierFromSession(request.getSession(true));
 		
-		// Vidage du panier et remise à 0 du montant total
-		monPanier.getAchats().clear();		
+		// Vidage du panier, remise à 0 du montant total et du nombre total d'articles
+		monPanier.getAchats().clear();
+		monPanier.setNombreTotal(0);
 		monPanier.setMontantTotal(0);
 		
 		// Stockage du panier vide dans la session

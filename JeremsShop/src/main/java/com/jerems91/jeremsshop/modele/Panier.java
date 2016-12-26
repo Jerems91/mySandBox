@@ -14,9 +14,10 @@ public class Panier implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -5063980757492884838L;
+	private static final long serialVersionUID = -3641049570017386943L;
 	private Map<String,Achat> achats;
 	private double montantTotal;
+	private int nombreTotal;
 	
 	public Panier() {
 		achats = new HashMap<String,Achat>();
@@ -28,6 +29,14 @@ public class Panier implements Serializable {
 
 	public void setMontantTotal(double montantTotal) {
 		this.montantTotal = montantTotal;
+	}
+
+	public int getNombreTotal() {
+		return nombreTotal;
+	}
+
+	public void setNombreTotal(int nombreTotal) {
+		this.nombreTotal = nombreTotal;
 	}
 
 	public Map<String, Achat> getAchats() {

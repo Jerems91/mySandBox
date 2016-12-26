@@ -26,6 +26,8 @@ public class CtrlUtils {
 	public static final String PRODUIT = "produit";
 	public static final String PANIER = "panier";
 	public static final String SOURCE = "source";
+	public static final String MSG_PRODUIT = "msgProduit";
+	public static final String AJOUT_ARTICLE = "Cet article a bien été ajouté au panier !";
 
 	public static Produit getProduitFromCatalogue(HttpServletRequest request,String CodeProduit) {
 		return ((Catalogue) request.getServletContext().getAttribute(CATALOGUE)).getProduits().get(CodeProduit);
@@ -78,6 +80,9 @@ public class CtrlUtils {
 		
 		// On incrémente le montant de l'achat avec le prix du produit
 		monAchat.setMontant(monAchat.getMontant() + monAchat.getProduit().getPrix());
+		
+		// On incrémente le nombre total d'articles du panier
+		monPanier.setNombreTotal(monPanier.getNombreTotal() + 1);
 		
 		// On incrémente le montant total du panier
 		monPanier.setMontantTotal(monPanier.getMontantTotal() + monAchat.getProduit().getPrix());
