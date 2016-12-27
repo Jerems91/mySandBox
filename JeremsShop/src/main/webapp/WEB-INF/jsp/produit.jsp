@@ -36,21 +36,12 @@ import="com.jerems91.jeremsshop.modele.Produit"%>
 			</table>
 			<br>
 			<div class="boutons">
-				<form class="produit" action="PrdPrec" method="post">
+				<form class="produit" action="" method="post">
 					<input name="source" type="hidden" value="${produit.code}">
-					<input name="precedent" type="submit" value="Précédent"/>
-				</form>
-				<form class="produit" action="PrdSuiv" method="post">
-					<input name="source" type="hidden" value="${produit.code}">
-					<input name="suivant" type="submit" value="Suivant"/>
-				</form>
-				<form class="produit" action="AjoutPanier" method="post">
-					<input name="source" type="hidden" value="${produit.code}">
-					<input name="ajout" type="submit" value="Ajouter au panier"/>
-				</form>
-				<form class="produit" action="AffichePanier" method="post">
-					<input name="source" type="hidden" value="${produit.code}">
-					<input name="panier" type="submit" value="Afficher le panier"/>
+					<input name="precedent" type="submit" formaction="PrdPrec" value="Précédent"/>
+					<input name="suivant" type="submit" formaction="PrdSuiv" value="Suivant"/>
+					<input name="ajout" type="submit" formaction="AjoutPanier" value="Ajouter au panier"/>
+					<input name="panier" type="submit" formaction="AffichePanier" value="Afficher le panier"/>
 				</form>
 			</div>
 		</article>
