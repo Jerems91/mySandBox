@@ -12,9 +12,9 @@ import org.apache.logging.log4j.Logger;
 import com.jerems91.jeremsshop.controleur.dispatch.ITraitement;
 import com.jerems91.jeremsshop.controleur.utils.CtrlUtils;
 
-public class TrtAffichePanier implements ITraitement {
+public class TrtSupprimeAchat implements ITraitement {
 	
-	private static final Logger logger = LogManager.getLogger(TrtAffichePanier.class);
+	private static final Logger logger = LogManager.getLogger(TrtSupprimeAchat.class);
 	
 	public void routeRequete(HttpServletRequest request, HttpServletResponse response, String vue) throws IOException, ServletException {
 		if (logger.isDebugEnabled()) {
@@ -31,13 +31,24 @@ public class TrtAffichePanier implements ITraitement {
 		if (codeProduitSource != 0) {
 		// Récupération du code produit sous forme d'entier réussie
 			
-			// Positionnement du code produit pour le retour depuis le panier
+			// Positionnement du code du produit à afficher en retour depuis le panier
 			codeProduit = String.valueOf(codeProduitSource);
 			
 		}
 		
 		// Stockage du produit affiché sur la page d'origine
 		request.setAttribute(CtrlUtils.PRODUIT, CtrlUtils.getProduitFromCatalogue(request,codeProduit));
+		
+		// Récupération du code produit de l'achat à supprimer
+		int codeAchatSupp = CtrlUtils.getCodeProduitFromRequest(request,CtrlUtils.CODE_ACHAT);
+		
+		if (codeAchatSupp != 0) {
+		// Récupération du code produit sous forme d'entier réussie pour l'achat à supprimer
+			
+			// Suppression de l'achat dans le panier
+			CtrlUtils.supprimerAchat(request, String.valueOf(codeAchatSupp));
+			
+		}
 		
 		// Affichage de la vue
 		request.getRequestDispatcher(vue).forward(request, response);

@@ -25,7 +25,7 @@ public class TrtAjoutPanier implements ITraitement {
 		double montantTotal = 0;
 		
 		// Récupération du code du produit affiché sur la page d'origine
-		int codeProduitSource = CtrlUtils.getCodeProduitSource(request);
+		int codeProduitSource = CtrlUtils.getCodeProduitFromRequest(request,CtrlUtils.SOURCE);
 		
 		// Positionnement sur le premier produit par défaut
 		String codeProduit = "1";

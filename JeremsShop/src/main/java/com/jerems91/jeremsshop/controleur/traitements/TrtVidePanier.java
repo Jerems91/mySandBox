@@ -11,7 +11,6 @@ import org.apache.logging.log4j.Logger;
 
 import com.jerems91.jeremsshop.controleur.dispatch.ITraitement;
 import com.jerems91.jeremsshop.controleur.utils.CtrlUtils;
-import com.jerems91.jeremsshop.modele.Panier;
 
 public class TrtVidePanier implements ITraitement {
 	
@@ -24,7 +23,7 @@ public class TrtVidePanier implements ITraitement {
 		}
 		
 		// Récupération du code du produit affiché sur la page d'origine
-		int codeProduitSource = CtrlUtils.getCodeProduitSource(request);
+		int codeProduitSource = CtrlUtils.getCodeProduitFromRequest(request,CtrlUtils.SOURCE);
 		
 		// Positionnement sur le premier produit par défaut
 		String codeProduit = "1";
@@ -40,16 +39,8 @@ public class TrtVidePanier implements ITraitement {
 		// Stockage du produit affiché sur la page d'origine
 		request.setAttribute(CtrlUtils.PRODUIT, CtrlUtils.getProduitFromCatalogue(request,codeProduit));
 		
-		// Récupération du panier depuis la session
-		Panier monPanier = CtrlUtils.getPanierFromSession(request.getSession(true));
-		
-		// Vidage du panier, remise à 0 du montant total et du nombre total d'articles
-		monPanier.getAchats().clear();
-		monPanier.setNombreTotal(0);
-		monPanier.setMontantTotal(0);
-		
-		// Stockage du panier vide dans la session
-		CtrlUtils.setPanierToSession(request.getSession(true), monPanier);
+		// Vidage du panier
+		CtrlUtils.viderPanier(request);
 		
 		// Affichage de la vue
 		request.getRequestDispatcher(vue).forward(request, response);

@@ -35,4 +35,9 @@
 		<classe>com.jerems91.jeremsshop.controleur.traitements.TrtVidePanier</classe>
 		<vue>/WEB-INF/jsp/panier.jsp</vue>
 	</route>
+	<route name="SupprimeAchat">
+		<nom>SupprimeAchat</nom>
+		<classe>com.jerems91.jeremsshop.controleur.traitements.TrtSupprimeAchat</classe>
+		<vue>/WEB-INF/jsp/panier.jsp</vue>
+	</route>
 </config-mvc>

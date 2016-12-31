@@ -91,6 +91,14 @@ td.montant {
 	padding: 5px;
 }
 
+td.action {
+	text-align: center;
+	border-width: 1px;
+	border-color: black;
+	border-style: solid;
+	padding: 5px;
+}
+
 p.prix {
 	font-weight: bolder;
 	text-align: center;

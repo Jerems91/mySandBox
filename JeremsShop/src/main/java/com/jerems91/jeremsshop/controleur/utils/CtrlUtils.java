@@ -26,6 +26,7 @@ public class CtrlUtils {
 	public static final String PRODUIT = "produit";
 	public static final String PANIER = "panier";
 	public static final String SOURCE = "source";
+	public static final String CODE_ACHAT = "codeAchat";
 	public static final String MSG_PRODUIT = "msgProduit";
 	public static final String AJOUT_ARTICLE = "Cet article a bien été ajouté au panier !";
 
@@ -37,23 +38,23 @@ public class CtrlUtils {
 		return ((Catalogue) request.getServletContext().getAttribute(CATALOGUE)).getProduits().size();
 	}
 	
-	public static int getCodeProduitSource(HttpServletRequest request) {
+	public static int getCodeProduitFromRequest(HttpServletRequest request, String paramName) {
 		
 		// Positionnement à 0 par défaut
-		int codeProduitSource = 0;
+		int codeProduit = 0;
 		
-		if (request.getParameter(CtrlUtils.SOURCE) != null) {
+		if (request.getParameter(paramName) != null) {
 		// Paramètre source renseigné
 			
 			try {
 				// Récupération du code du produit affiché sur la page d'origine
-				codeProduitSource = Integer.parseInt(request.getParameter(CtrlUtils.SOURCE));
+				codeProduit = Integer.parseInt(request.getParameter(paramName));
 			} catch (Exception e) {
 				logger.error("Problème lors de la conversion du code produit en entier",e);
 			}
 		}
 		
-		return codeProduitSource;
+		return codeProduit;
 
 	}
 	
@@ -110,6 +111,41 @@ public class CtrlUtils {
 		// Stockage du panier dans la session
 		session.setAttribute(PANIER,monPanier);		
 		
+	}
+	
+	public static void viderPanier(HttpServletRequest request) {
+		
+		// Récupération du panier depuis la session
+		Panier monPanier = getPanierFromSession(request.getSession(true));
+		
+		// Vidage du panier, remise à 0 du montant total et du nombre total d'articles
+		monPanier.getAchats().clear();
+		monPanier.setNombreTotal(0);
+		monPanier.setMontantTotal(0);
+		
+		// Stockage du panier vide dans la session
+		setPanierToSession(request.getSession(true), monPanier);
+		
+	}
+	
+	public static void supprimerAchat(HttpServletRequest request, String codeAchat) {
+		
+		// Récupération du panier depuis la session
+		Panier monPanier = getPanierFromSession(request.getSession(true));
+		
+		// Diminution du nombre total d'articles et du montant total, suppression de l'achat dans le panier
+		monPanier.setNombreTotal(monPanier.getNombreTotal() - monPanier.getAchats().get(codeAchat).getQuantite());
+		monPanier.setMontantTotal(monPanier.getMontantTotal() - monPanier.getAchats().get(codeAchat).getMontant());
+		monPanier.getAchats().remove(codeAchat);
+		
+		// Si le panier ne contient plus d'achat, on réinitialise le panier par sécurité
+		if (monPanier.getAchats().isEmpty()) {
+			viderPanier(request);
+		}
+		
+		// Stockage du panier mis à jour dans la session
+		setPanierToSession(request.getSession(true), monPanier);
+
 	}
 	
 }
