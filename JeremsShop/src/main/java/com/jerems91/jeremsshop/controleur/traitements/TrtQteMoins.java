@@ -13,9 +13,9 @@ import com.jerems91.jeremsshop.controleur.dispatch.ITraitement;
 import com.jerems91.jeremsshop.controleur.utils.CtrlUtils;
 import com.jerems91.jeremsshop.modele.Panier;
 
-public class TrtSupprimeAchat implements ITraitement {
+public class TrtQteMoins implements ITraitement {
 	
-	private static final Logger logger = LogManager.getLogger(TrtSupprimeAchat.class);
+	private static final Logger logger = LogManager.getLogger(TrtQteMoins.class);
 	
 	public void routeRequete(HttpServletRequest request, HttpServletResponse response, String vue) throws IOException, ServletException {
 		if (logger.isDebugEnabled()) {
@@ -40,21 +40,21 @@ public class TrtSupprimeAchat implements ITraitement {
 		// Stockage du produit affiché sur la page d'origine
 		request.setAttribute(CtrlUtils.PRODUIT, CtrlUtils.getProduitFromCatalogue(request,codeProduit));
 		
-		// Récupération du code produit de l'achat à supprimer
-		int codeAchatSupp = CtrlUtils.getCodeProduitFromRequest(request,CtrlUtils.CODE_ACHAT);
+		// Récupération du code produit de l'achat dont il faut diminuer la quantité
+		int codeAchatMoins = CtrlUtils.getCodeProduitFromRequest(request,CtrlUtils.CODE_ACHAT);
 		
-		if (codeAchatSupp != 0) {
-		// Récupération du code produit sous forme d'entier réussie pour l'achat à supprimer
+		if (codeAchatMoins != 0) {
+		// Récupération du code produit sous forme d'entier réussie pour l'achat concerné
 			
 			// Récupération du panier depuis la session
 			Panier monPanier = CtrlUtils.getPanierFromSession(request.getSession(true));
 			
-			// Suppression de l'achat dans le panier
-			CtrlUtils.supprimerAchat(monPanier, String.valueOf(codeAchatSupp));
+			// Diminution de la quantité de l'achat dans le panier
+			CtrlUtils.quantiteMoins(monPanier, String.valueOf(codeAchatMoins));
 			
 			// Stockage du panier mis à jour dans la session
 			CtrlUtils.setPanierToSession(request.getSession(true), monPanier);
-
+			
 		}
 		
 		// Affichage de la vue

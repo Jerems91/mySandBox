@@ -58,10 +58,7 @@ public class CtrlUtils {
 
 	}
 	
-	public static double ajouterAchat(HttpServletRequest request,String codeProduit) {
-		
-		// Récupération du panier depuis la session
-		Panier monPanier = getPanierFromSession(request.getSession(true));
+	public static double ajouterAchat(HttpServletRequest request, Panier monPanier, String codeProduit) {
 		
 		// Recherche du produit dans le panier
 		Achat monAchat = monPanier.getAchats().get(codeProduit);
@@ -88,9 +85,6 @@ public class CtrlUtils {
 		// On incrémente le montant total du panier
 		monPanier.setMontantTotal(monPanier.getMontantTotal() + monAchat.getProduit().getPrix());
 		
-		// Stockage du panier dans la session
-		setPanierToSession(request.getSession(true),monPanier);
-		
 		return monPanier.getMontantTotal();
 	}
 	
@@ -113,25 +107,16 @@ public class CtrlUtils {
 		
 	}
 	
-	public static void viderPanier(HttpServletRequest request) {
-		
-		// Récupération du panier depuis la session
-		Panier monPanier = getPanierFromSession(request.getSession(true));
+	public static void viderPanier(Panier monPanier) {
 		
 		// Vidage du panier, remise à 0 du montant total et du nombre total d'articles
 		monPanier.getAchats().clear();
 		monPanier.setNombreTotal(0);
 		monPanier.setMontantTotal(0);
 		
-		// Stockage du panier vide dans la session
-		setPanierToSession(request.getSession(true), monPanier);
-		
 	}
 	
-	public static void supprimerAchat(HttpServletRequest request, String codeAchat) {
-		
-		// Récupération du panier depuis la session
-		Panier monPanier = getPanierFromSession(request.getSession(true));
+	public static void supprimerAchat(Panier monPanier, String codeAchat) {
 		
 		// Diminution du nombre total d'articles et du montant total, suppression de l'achat dans le panier
 		monPanier.setNombreTotal(monPanier.getNombreTotal() - monPanier.getAchats().get(codeAchat).getQuantite());
@@ -140,12 +125,40 @@ public class CtrlUtils {
 		
 		// Si le panier ne contient plus d'achat, on réinitialise le panier par sécurité
 		if (monPanier.getAchats().isEmpty()) {
-			viderPanier(request);
+			viderPanier(monPanier);
 		}
 		
-		// Stockage du panier mis à jour dans la session
-		setPanierToSession(request.getSession(true), monPanier);
-
 	}
+	
+	public static void quantiteMoins(Panier monPanier, String codeAchat) {
+		
+		if (monPanier.getAchats().get(codeAchat).getQuantite() == 1) {
+		// Si un seul exemplaire restant pour l'achat, on le supprime
+			supprimerAchat(monPanier, codeAchat);
+		} else {
+			
+			// Diminution de la quantité et du montant de l'achat
+			monPanier.getAchats().get(codeAchat).setQuantite(monPanier.getAchats().get(codeAchat).getQuantite() - 1);
+			monPanier.getAchats().get(codeAchat).setMontant(monPanier.getAchats().get(codeAchat).getMontant() - monPanier.getAchats().get(codeAchat).getProduit().getPrix());
+			
+			// Diminution du nombre total d'articles et du montant total
+			monPanier.setNombreTotal(monPanier.getNombreTotal() - 1);
+			monPanier.setMontantTotal(monPanier.getMontantTotal() - monPanier.getAchats().get(codeAchat).getProduit().getPrix());
+			
+		}		
+		
+	}
+	
+	public static void quantitePlus(Panier monPanier, String codeAchat) {
+		
+		// Augmentation de la quantité et du montant de l'achat
+		monPanier.getAchats().get(codeAchat).setQuantite(monPanier.getAchats().get(codeAchat).getQuantite() + 1);
+		monPanier.getAchats().get(codeAchat).setMontant(monPanier.getAchats().get(codeAchat).getMontant() + monPanier.getAchats().get(codeAchat).getProduit().getPrix());
+		
+		// Augmentation du nombre total d'articles et du montant total
+		monPanier.setNombreTotal(monPanier.getNombreTotal() + 1);
+		monPanier.setMontantTotal(monPanier.getMontantTotal() + monPanier.getAchats().get(codeAchat).getProduit().getPrix());
+		
+	}		
 	
 }

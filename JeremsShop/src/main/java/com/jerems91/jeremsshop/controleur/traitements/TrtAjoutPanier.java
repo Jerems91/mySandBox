@@ -11,6 +11,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.jerems91.jeremsshop.controleur.dispatch.ITraitement;
 import com.jerems91.jeremsshop.controleur.utils.CtrlUtils;
+import com.jerems91.jeremsshop.modele.Panier;
 
 public class TrtAjoutPanier implements ITraitement {
 	
@@ -36,8 +37,14 @@ public class TrtAjoutPanier implements ITraitement {
 			// Positionnement du code produit choisi pour l'achat
 			codeProduit = String.valueOf(codeProduitSource);
 			
+			// Récupération du panier depuis la session
+			Panier monPanier = CtrlUtils.getPanierFromSession(request.getSession(true));			
+			
 			// Ajout du produit acheté dans le panier
-			montantTotal = CtrlUtils.ajouterAchat(request, codeProduit);
+			montantTotal = CtrlUtils.ajouterAchat(request, monPanier, codeProduit);
+			
+			// Stockage du panier mis à jour dans la session
+			CtrlUtils.setPanierToSession(request.getSession(true),monPanier);
 			
 		}
 		

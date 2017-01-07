@@ -26,24 +26,28 @@ import="com.jerems91.jeremsshop.modele.Panier,com.jerems91.jeremsshop.modele.Ach
 						<tr>
 							<th class="panier">Produit</th>
 							<th class="panier">Prix (Euros)</th>
-							<th class="panier">Nb</th>
+							<th class="panier">Quantité</th>
 							<th class="panier">Montant (Euros)</th>
 							<th class="panier"></th>
 						</tr>
 						<c:forEach items="${panier.achats.values()}" var="achat">
-							 <tr>
-							 	<td class="nom">${achat.produit.nom}</td>
-							 	<td class="prix">${achat.produit.prix}</td>
-							 	<td class="quantite">${achat.quantite}</td>
-							 	<td class="montant">${achat.montant}</td>
-							 	<td class="action">
-							 		<form class="panier" action="" method="post">
-										<input name="source" type="hidden" value="${produit.code}">
-										<input name="codeAchat" type="hidden" value="${achat.produit.code}">
+					 		<form class="panier" action="" method="post">
+								<input name="source" type="hidden" value="${produit.code}"/>
+								<input name="codeAchat" type="hidden" value="${achat.produit.code}"/>
+								 <tr>
+								 	<td class="nom">${achat.produit.nom}</td>
+								 	<td class="prix">${achat.produit.prix}</td>
+								 	<td class="quantite">
+								 		${achat.quantite}
+								 		<input name="qtemoins" type="submit" formaction="QteMoins" value="-"/>
+								 		<input name="qteplus" type="submit" formaction="QtePlus" value="+"/>
+								 	</td>
+								 	<td class="montant">${achat.montant}</td>
+								 	<td class="action">
 										<input name="supprimer" type="submit" formaction="SupprimeAchat" value="Supprimer"/>
-									</form>
-							 	</td>
-							 </tr>
+								 	</td>
+								 </tr>
+							</form>
 						</c:forEach>
 					</table>
 					<br>

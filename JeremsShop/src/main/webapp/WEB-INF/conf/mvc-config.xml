@@ -40,4 +40,14 @@
 		<classe>com.jerems91.jeremsshop.controleur.traitements.TrtSupprimeAchat</classe>
 		<vue>/WEB-INF/jsp/panier.jsp</vue>
 	</route>
+	<route name="QteMoins">
+		<nom>QteMoins</nom>
+		<classe>com.jerems91.jeremsshop.controleur.traitements.TrtQteMoins</classe>
+		<vue>/WEB-INF/jsp/panier.jsp</vue>
+	</route>
+	<route name="QtePlus">
+		<nom>QtePlus</nom>
+		<classe>com.jerems91.jeremsshop.controleur.traitements.TrtQtePlus</classe>
+		<vue>/WEB-INF/jsp/panier.jsp</vue>
+	</route>
 </config-mvc>
